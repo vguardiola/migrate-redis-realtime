@@ -127,6 +127,8 @@ def migrate(srchost, dsthost, flush, monitor):
                 pipeline = dest.pipeline()
 
                 for key, ttl, data in zip(keys, result[::2], result[1::2]):
+                    if ttl == -1:
+                        ttl = 0
                     if ttl is None:
                         ttl = 0
                     if data != None:
